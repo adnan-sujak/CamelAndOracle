@@ -5,11 +5,21 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.support.SimpleRegistry;
 import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class oracleMain {
 
+    private static final Logger myLogger = LoggerFactory.getLogger(oracleMain.class);
+    
     public static void main(String [] args) throws Exception{
+        
+        myLogger.info("This is an informational message");
+        myLogger.debug("This is a debug message");
+        myLogger.error("This is an error message");
+        
+        
+        
         DataSource dataSource = myDataSource(); //creates instance of DataSource object by calling the myDataSource method
         
         SimpleRegistry register = new SimpleRegistry(); //implementation of Registry. Uses a HashMap to store objects that can be looked up by string keys.
@@ -39,7 +49,7 @@ public class oracleMain {
         BasicDataSource data = new BasicDataSource();
 
         data.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-        data.setUrl("jdbc:oracle:thin:@localhost:1521:adnan");
+        data.setUrl("jdbc:oracle:thin:@127.0.0.1:1521/xepdb1");
         data.setUsername("system");
         data.setPassword("adnans12");
         return data;
